@@ -1815,7 +1815,7 @@
         ];
 
         // =============================================================
-        // 3. STATE (корзина хранит количество в кг с шагом 0.05)
+        // 3. STATE (корзина хранит количество в кг с шагом 0.25)
         // =============================================================
         let cart = {}; // { productId: kg }
         let currentCategory = 'all';
@@ -1907,7 +1907,7 @@
            grid.innerHTML = filtered.map(p => {
     const qty = cart[p.id] || 0;
     const inCart = qty > 0;
-    const step = p.unit === 'шт' ? 1 : 0.05;
+    const step = p.unit === 'шт' ? 1 : 0.25;
     // Обрезаем описание, если оно длиннее 100 символов
     const desc = p.description || '';
     const descShort = desc.length > 100 ? desc.slice(0, 100) + '...' : desc;
@@ -1945,7 +1945,7 @@
         const id = parseInt(btn.dataset.id);
         const product = filteredProducts.find(p => p.id === id);
         if (!product) return;
-        const step = product.unit === 'шт' ? 1 : 0.05;
+        const step = product.unit === 'шт' ? 1 : 0.25;
         updateQty(id, -step);
     });
 });
@@ -1954,7 +1954,7 @@ document.querySelectorAll('.qty-inc').forEach(btn => {
         const id = parseInt(btn.dataset.id);
         const product = filteredProducts.find(p => p.id === id);
         if (!product) return;
-        const step = product.unit === 'шт' ? 1 : 0.05;
+        const step = product.unit === 'шт' ? 1 : 0.25;
         updateQty(id, step);
     });
 });
@@ -1963,7 +1963,7 @@ document.querySelectorAll('.btn-add').forEach(btn => {
         const id = parseInt(btn.dataset.id);
         const product = filteredProducts.find(p => p.id === id);
         if (!product) return;
-        const step = product.unit === 'шт' ? 1 : 0.05;
+        const step = product.unit === 'шт' ? 1 : 0.25;
         const current = cart[id] || 0;
         if (current === 0) {
             updateQty(id, step);
@@ -1999,7 +1999,7 @@ document.querySelectorAll('.desc-toggle').forEach(btn => {
         function updateQty(id, delta) {
     const product = filteredProducts.find(p => p.id === id);
     if (!product) return;
-    const step = product.unit === 'шт' ? 1 : 0.05;
+    const step = product.unit === 'шт' ? 1 : 0.25;
     let newQty = (cart[id] || 0) + delta;
     newQty = Math.round(newQty / step) * step;
     if (newQty < 0) newQty = 0;
@@ -2101,7 +2101,7 @@ document.querySelectorAll('.desc-toggle').forEach(btn => {
         const id = parseInt(btn.dataset.id);
         const product = filteredProducts.find(p => p.id === id);
         if (!product) return;
-        const step = product.unit === 'шт' ? 1 : 0.05;
+        const step = product.unit === 'шт' ? 1 : 0.25;
         updateQty(id, -step);
     });
 });
@@ -2110,7 +2110,7 @@ document.querySelectorAll('.cart-qty-inc').forEach(btn => {
         const id = parseInt(btn.dataset.id);
         const product = filteredProducts.find(p => p.id === id);
         if (!product) return;
-        const step = product.unit === 'шт' ? 1 : 0.05;
+        const step = product.unit === 'шт' ? 1 : 0.25;
         updateQty(id, step);
     });
 });
